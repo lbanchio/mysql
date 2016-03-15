@@ -18,6 +18,7 @@ RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCB
 ENV MYSQL_MAJOR 5.7
 ENV MYSQL_VERSION 5.7.8-rc
 RUN mkdir /ss
+RUN chown -R mysql:root /ss
 RUN echo "deb http://repo.mysql.com/apt/debian/ wheezy mysql-${MYSQL_MAJOR}-dmr" > /etc/apt/sources.list.d/mysql.list
 
 # the "/var/lib/mysql" stuff here is because the mysql-server postinst doesn't have an explicit way to disable the mysql_install_db codepath besides having a database already "configured" (ie, stuff in /var/lib/mysql/mysql)

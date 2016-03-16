@@ -20,7 +20,8 @@ RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C45677
 
 ENV MYSQL_MAJOR 5.5
 ENV MYSQL_VERSION 5.5.45
-
+RUN mkdir /ss
+RUN chown -R mysql:root /ss
 # note: we're pulling the *.asc file from mysql.he.net instead of dev.mysql.com because the official mirror 404s that file for whatever reason - maybe it's at a different path?
 RUN apt-get update && apt-get install -y curl --no-install-recommends && rm -rf /var/lib/apt/lists/* \
 	&& curl -SL "http://dev.mysql.com/get/Downloads/MySQL-$MYSQL_MAJOR/mysql-$MYSQL_VERSION-linux2.6-x86_64.tar.gz" -o mysql.tar.gz \
